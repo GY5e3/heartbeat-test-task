@@ -74,3 +74,28 @@ TEST_F(CandleTest, contains_incorrect_max_and_min)
     EXPECT_FALSE(result);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+TEST_F(CandleTest, full_size_positive)
+{
+    m_candle = Candle(150.0, 155.0, 145.0, 152.0);
+
+    Price result = m_candle.full_size();
+
+    EXPECT_EQ(result, 10.0);
+}
+TEST_F(CandleTest, full_size_edge_case)
+{
+    m_candle = Candle(150.0, 150.0, 150.0, 150.0);
+
+    Price result = m_candle.full_size();
+
+    EXPECT_EQ(result, 0.0);
+}
+TEST_F(CandleTest, full_size_incorrect_max_and_min)
+{
+    m_candle = Candle(150.0, 145.0, 155.0, 152.0);
+
+    Price result = m_candle.full_size();
+
+    EXPECT_EQ(result, 10.0);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
