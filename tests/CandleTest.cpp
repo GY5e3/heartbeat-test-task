@@ -99,3 +99,27 @@ TEST_F(CandleTest, full_size_incorrect_max_and_min)
     EXPECT_EQ(result, 10.0);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+TEST_F(CandleTest, body_size_positive)
+{
+    m_candle = Candle(150.0, 155.0, 145.0, 152.0);
+
+    Price result = m_candle.body_size();
+
+    EXPECT_EQ(result, 2.0);
+}
+TEST_F(CandleTest, body_size_edge_case)
+{
+    m_candle = Candle(150.0, 155.0, 145.0, 150.0);
+
+    Price result = m_candle.body_size();
+
+    EXPECT_EQ(result, 0.0);
+}
+TEST_F(CandleTest, body_size_bearish_candle)
+{
+    m_candle = Candle(150.0, 145.0, 155.0, 152.0);
+
+    Price result = m_candle.body_size();
+
+    EXPECT_EQ(result, 2.0);
+}
