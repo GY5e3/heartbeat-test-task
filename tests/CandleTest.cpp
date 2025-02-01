@@ -148,3 +148,28 @@ TEST_F(CandleTest, is_green_bearish_candle)
 
     EXPECT_FALSE(result);
 }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+TEST_F(CandleTest, is_red_positive)
+{
+    m_candle = Candle(152.0, 155.0, 145.0, 150.0);
+
+    bool result = m_candle.is_red();
+
+    EXPECT_TRUE(result);
+}
+TEST_F(CandleTest, is_red_edge_case)
+{
+    m_candle = Candle(150.0, 155.0, 145.0, 150.0);
+
+    bool result = m_candle.is_red();
+
+    EXPECT_FALSE(result);
+}
+TEST_F(CandleTest, is_red_bullish_candle)
+{
+    m_candle = Candle(150.0, 155.0, 145.0, 152.0);
+
+    bool result = m_candle.is_red();
+
+    EXPECT_FALSE(result);
+}
