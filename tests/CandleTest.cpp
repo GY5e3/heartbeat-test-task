@@ -117,9 +117,34 @@ TEST_F(CandleTest, body_size_edge_case)
 }
 TEST_F(CandleTest, body_size_bearish_candle)
 {
-    m_candle = Candle(150.0, 145.0, 155.0, 152.0);
+    m_candle = Candle(152.0, 145.0, 155.0, 150.0);
 
     Price result = m_candle.body_size();
 
     EXPECT_EQ(result, 2.0);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+TEST_F(CandleTest, is_green_positive)
+{
+    m_candle = Candle(150.0, 155.0, 145.0, 152.0);
+
+    bool result = m_candle.is_green();
+
+    EXPECT_TRUE(result);
+}
+TEST_F(CandleTest, is_green_edge_case)
+{
+    m_candle = Candle(150.0, 155.0, 145.0, 150.0);
+
+    bool result = m_candle.is_green();
+
+    EXPECT_FALSE(result);
+}
+TEST_F(CandleTest, is_green_bearish_candle)
+{
+    m_candle = Candle(152.0, 155.0, 145.0, 150.0);
+
+    bool result = m_candle.is_green();
+
+    EXPECT_FALSE(result);
 }
